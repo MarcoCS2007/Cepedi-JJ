@@ -1,0 +1,110 @@
+
+Torneios (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    nome VARCHAR(50) NOT NULL,
+    datetime DATETIME NOT NULL,
+    local VARCHAR(50) NOT NULL,
+    status VARCHAR(20) NOT NULL DEFAULT 'Aberto' CHECK (status IN ( 'Aberto', 'Em Andamento', 'Finalizado')),
+    organizador VARCHAR(50)
+)
+
+Dojo (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    nome VARCHAR(50) NOT NULL,
+    CNPJ CHAR(14) UNIQUE,
+    email VARCHAR(100),
+    telefone VARCHAR(20),
+    endereco VARCHAR(50),
+    professor_responsavel VARCHAR(50) NOT NULL
+)
+
+Atletas (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    nome VARCHAR(50) NOT NULL,    
+    cpf CHAR(11) NOT NULL UNIQUE,
+    data_nascimento DATE NOT NULL,
+    peso REAL NOT NULL,
+    id_categoria_genero INTEGER NOT NULL REFERENCES Categorias_Genero(id),
+    id_categoria_faixa INTEGER NOT NULL REFERENCES Categorias_Faixa(id),
+    email VARCHAR(100),
+    telefone VARCHAR(20),
+    id_equipe INTEGER NOT NULL REFERENCES Dojo(id)
+)
+
+Inscricoes (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    id_atleta INTEGER NOT NULL REFERENCES Atletas(id),
+    id_divisao INTEGER NOT NULL REFERENCES Divisoes(id),
+    nis CHAR(11),
+    status_pagamento VARCHAR(10) NOT NULL DEFAULT 'Pendente' CHECK (status_pagamento IN ('Pendente', 'Pago', 'Isento'))
+    UNIQUE(id_atleta, id_divisao) [Impede inscrição duplicada na mesma categoria]
+)
+
+Categorias_Genero (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    nome VARCHAR(30) NOT NULL UNIQUE  -- Ex: 'Masculino', 'Feminino'
+);
+
+Categorias_Idade (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    nome VARCHAR(30) NOT NULL UNIQUE  -- Ex: 'Mirim', 'Infantil', 'Juvenil', 'Adulto', 'Master 1'
+);
+
+Categorias_Faixa (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    nome VARCHAR(20) NOT NULL UNIQUE, -- Ex: 'Branca', 'Azul', 'Roxa', 'Marrom', 'Preta'
+    ordem INTEGER NOT NULL UNIQUE     -- Ex: 1, 2, 3, 4, 5 (útil para ordenação)
+);
+
+Categorias_Peso (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    nome VARCHAR(30) NOT NULL UNIQUE, -- Ex: 'Galo', 'Pluma', 'Pena', 'Leve', 'Absoluto'
+    peso_max_kg REAL                  -- Ex: 57.5, 64.0, 70.0, 76.0 (pode ser NULL para 'Absoluto')
+);
+
+Divisoes (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    id_torneio INTEGER NOT NULL REFERENCES Torneios(id),
+    id_categoria_genero INTEGER NOT NULL REFERENCES Categorias_Genero(id),
+    id_categoria_idade INTEGER NOT NULL REFERENCES Categorias_Idade(id),
+    id_categoria_peso INTEGER NOT NULL REFERENCES Categorias_Peso(id),
+    id_categoria_faixa INTEGER NOT NULL REFERENCES Categorias_Faixa(id)
+    UNIQUE(id_torneio, id_categoria_genero, id_categoria_idade, id_categoria_peso, id_categoria_faixa)
+);
+
+Lutas (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    id_divisao INTEGER NOT NULL REFERENCES Divisoes(id),
+    participante_1 INTEGER NOT NULL REFERENCES Inscricoes(id),
+    participante_2 INTEGER NOT NULL REFERENCES Inscricoes(id),
+    local VARCHAR(50) -- [Ex: "Tatame 1"]
+);
+
+Resultados_lutas (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    id_luta INTEGER NOT NULL UNIQUE REFERENCES Lutas(id),
+    vencedor INTEGER NOT NULL REFERENCES Inscricoes(id),
+    pontuação_1 INTEGER NOT NULL DEFAULT 0,
+    pontuação_2 INTEGER NOT NULL DEFAULT 0,
+    vantagem_1 INTEGER NOT NULL DEFAULT 0,
+    vantagem_2 INTEGER NOT NULL DEFAULT 0,
+    punições_1 INTEGER NOT NULL DEFAULT 0,
+    punições_2 INTEGER NOT NULL DEFAULT 0,
+    metodo_vitoria VARCHAR(20) NOT NULL CHECK (metodo_vitoria IN ('Pontos', 'Finalizacao', 'W.O.', 'Desistencia', 'Desclassificacao'))
+)
+
+resultado_torneio (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    id_divisao INTEGER NOT NULL REFERENCES Divisoes(id), 
+    id_inscricao INTEGER NOT NULL REFERENCES Inscricoes(id), 
+    colocacao INTEGER NOT NULL, -- [1, 2, ]
+    UNIQUE(id_divisao, colocacao),
+    UNIQUE(id_divisao, id_atleta)
+)
+
+login (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    email VARCHAR(50) NOT NULL UNIQUE,
+    senha VARCHAR(255) NOT NULL,
+    admin VARCHAR(20) NOT NULL CHECK (admin IN ('Admin', 'Organizador', 'Atleta', 'Professor'))
+)
