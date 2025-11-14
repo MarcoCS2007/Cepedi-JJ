@@ -61,12 +61,29 @@ CREATE TABLE IF NOT EXISTS Categorias_Genero (
     nome TEXT NOT NULL UNIQUE -- Ex: 'Masculino', 'Feminino'
 );
 
+-- SEED: Dados padrão para Gênero
+INSERT OR IGNORE INTO Categorias_Genero (id, nome) VALUES
+    (1, 'Masculino'),
+    (2, 'Feminino');
+
 -- 4. Categorias de Faixa
 CREATE TABLE IF NOT EXISTS Categorias_Faixa (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     nome TEXT NOT NULL UNIQUE, -- Ex: 'Branca', 'Azul', 'Roxa', 'Marrom', 'Preta'
     ordem INTEGER NOT NULL UNIQUE -- Ex: 1, 2, 3, 4, 5 (útil para ordenação)
 );
+
+-- SEED: Dados padrão para Faixa (incluindo infantis)
+INSERT OR IGNORE INTO Categorias_Faixa (id, nome, ordem) VALUES
+    (1, 'Branca', 1),
+    (2, 'Cinza', 2),
+    (3, 'Amarela', 3),
+    (4, 'Laranja', 4),
+    (5, 'Verde', 5),
+    (6, 'Azul', 6),
+    (7, 'Roxa', 7),
+    (8, 'Marrom', 8),
+    (9, 'Preta', 9);
 
 -- 5. Tabela de Atletas
 CREATE TABLE IF NOT EXISTS Atletas (
@@ -92,12 +109,40 @@ CREATE TABLE IF NOT EXISTS Categorias_Idade (
     nome TEXT NOT NULL UNIQUE -- Ex: 'Mirim', 'Infantil', 'Juvenil', 'Adulto', 'Master 1'
 );
 
+-- SEED: Dados padrão para Idade
+INSERT OR IGNORE INTO Categorias_Idade (id, nome) VALUES
+    (1, 'Pré-Mirim'),
+    (2, 'Mirim'),
+    (3, 'Infantil'),
+    (4, 'Infanto-Juvenil'),
+    (5, 'Juvenil'),
+    (6, 'Adulto'),
+    (7, 'Master 1'),
+    (8, 'Master 2'),
+    (9, 'Master 3'),
+    (10, 'Master 4'),
+    (11, 'Master 5'),
+    (12, 'Master 6');
+
 -- 7. Categorias de Peso
 CREATE TABLE IF NOT EXISTS Categorias_Peso (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     nome TEXT NOT NULL UNIQUE, -- Ex: 'Galo', 'Pluma', 'Pena', 'Leve', 'Absoluto'
     peso_max_kg REAL -- Ex: 57.5, 64.0 (pode ser NULL para 'Absoluto')
 );
+
+-- SEED: Dados padrão para Peso (Nomes IBJJF/CBJJ)
+INSERT OR IGNORE INTO Categorias_Peso (id, nome) VALUES
+    (1, 'Galo'),
+    (2, 'Pluma'),
+    (3, 'Pena'),
+    (4, 'Leve'),
+    (5, 'Médio'),
+    (6, 'Meio-Pesado'),
+    (7, 'Pesado'),
+    (8, 'Super-Pesado'),
+    (9, 'Pesadíssimo'),
+    (10, 'Absoluto');
 
 -- 8. Tabela de Divisões (Categorias do Torneio)
 CREATE TABLE IF NOT EXISTS Divisoes (

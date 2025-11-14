@@ -12,7 +12,7 @@ class DojoDAO:
         
         try:
             if dojo.id is None:
-                cur.execute("INSERT INTO Dojo VALUES (?, ?, ?, ?, ?, ?)",
+                cur.execute("INSERT INTO Dojo (nome, cnpj, email, telefone, endereco, professor_responsavel) VALUES (?, ?, ?, ?, ?, ?)",
                             (dojo.nome, dojo.cnpj, dojo.email, dojo.telefone, dojo.endereco, dojo.professor_responsavel))
             else:
                 cur.execute("UPDATE Dojo SET nome = ?, cnpj = ?, email = ?, telefone = ?, endereco = ?, professor_responsavel = ? " 
