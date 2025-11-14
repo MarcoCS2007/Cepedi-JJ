@@ -38,7 +38,7 @@ PRAGMA foreign_keys = ON;
 CREATE TABLE IF NOT EXISTS Torneios (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     nome TEXT NOT NULL,
-    datetime TEXT NOT NULL, -- Usar formato ISO (ex: 'YYYY-MM-DD HH:MM:SS')
+    date TEXT NOT NULL, -- Usar formato ISO (ex: 'YYYY-MM-DD)
     local TEXT NOT NULL,
     status TEXT NOT NULL DEFAULT 'Aberto' CHECK (status IN ('Aberto', 'Em Andamento', 'Finalizado')),
     organizador TEXT
@@ -192,6 +192,7 @@ CREATE TABLE IF NOT EXISTS login (
 );
             """
             )
+   
     def clearTable(self, table_name):
         cur = self.cursor()
         if cur:

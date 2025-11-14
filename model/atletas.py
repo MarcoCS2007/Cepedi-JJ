@@ -2,7 +2,7 @@ from model.categorias import CategoriaFaixa, CategoriaGenero
 from model.dojo import Dojo
 
 class Atleta:
-    def __init__(self, id: int, nome: str, cpf : str ,dataNasc: str, cat_genero: CategoriaGenero, peso: float, cat_faixa: CategoriaFaixa, dojo: Dojo, email: str = '', telefone: str = ''):
+    def __init__(self, nome: str, cpf : str ,dataNasc: str, cat_genero: CategoriaGenero, peso: float, cat_faixa: CategoriaFaixa, dojo: Dojo, email: str = '', telefone: str = '', id: int = None):
         self.id = id
         self.nome = nome
         self.dataNasc = dataNasc
@@ -12,8 +12,7 @@ class Atleta:
         self.cat_faixa = cat_faixa
         self.email = email
         self.telefone = telefone
-        
-        self.id_dojo = dojo
+        self.dojo = dojo
 
     def __str__(self):
         return (f"ID: {self.id},\n"
@@ -24,4 +23,4 @@ class Atleta:
                 f"Categoria de Faixa: {self.cat_faixa},\n"
                 f"Email: {self.email},\n"
                 f"Telefone: {self.telefone},\n"
-                f"Dojo: {self.id_dojo}")
+                f"Dojo: {self.dojo}")

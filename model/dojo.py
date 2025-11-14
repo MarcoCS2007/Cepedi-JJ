@@ -1,6 +1,6 @@
 class Dojo:
 
-    def __init__(self, id : int, nome: str, cnpj: str, email: str = '', telefone: str = '', endereco: str = '', professor_responsavel: str = ''):
+    def __init__(self, nome: str, cnpj: str, email: str = '', telefone: str = '', endereco: str = '', professor_responsavel: str = '', id: int = None):
         self.id = id
         self.nome = nome
         self.cnpj = cnpj

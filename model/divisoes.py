@@ -3,7 +3,7 @@ from model.categorias import CategoriaIdade, CategoriaPeso, CategoriaFaixa, Cate
 
 class Divisoes:
 
-    def __init__(self, id : int, torneio : Torneios, categoriaGenero : CategoriaGenero, categoriaIdade : CategoriaIdade, categoriaPeso : CategoriaPeso, categoriaFaixa : CategoriaFaixa):
+    def __init__(self, torneio : Torneios, categoriaGenero : CategoriaGenero, categoriaIdade : CategoriaIdade, categoriaPeso : CategoriaPeso, categoriaFaixa : CategoriaFaixa,  id : int = None):
         self.id = id
         self.torneio = torneio
         self.categoria_genero = categoriaGenero

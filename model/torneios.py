@@ -1,5 +1,5 @@
 class Torneios:
-    def __init__(self, id : int, nome: str, data: str, local: str, status: str, organizador: str = None):
+    def __init__(self, nome: str, data: str, local: str, status: str, organizador: str = None,  id : int = None):
         self.id = id
         self.nome = nome
         self.data = data
