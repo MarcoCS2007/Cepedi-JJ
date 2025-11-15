@@ -1,0 +1,152 @@
+-----------init-----------
+1. Login
+2. Casastar
+
+-----------Login----------
+Login (Email, ID de usuário) :
+Senha :
+
+-----------Home---------- (user)
+1. Torneios
+2. Meus dados
+3. Minhas inscriçôes
+4. Meu histórico de resultados
+5. Meu histórico de vitórias em torneios
+6. Sair
+
+-----------Home---------- (admin)
+1. Torneios
+2. Categorias
+3. Atletas
+4. Dojos
+5. Insciçoes
+6. Divisões
+7. Lutas
+8. Resultados das lutas
+9. Resultado dos torneios
+10. Excluir banco de dados
+11. Sair
+
+-----------------------------------------------------------------------------
+
+-----------Torneio---------- (user)
+1. Listar torneios
+2. Busccar por ID
+3. buscar por Nome
+4. Voltar
+
+----------Torneio----------- (admin)
+1. Adicionar/Modificar
+2. Listar torneios
+3. Busccar por ID
+4. Buscar por Nome
+5. Deletar torneio
+6. Voltar
+
+----------------------------------------------------------------------------
+
+----------Categorias----------- (admin)
+1. Idade
+2. Genero
+3. Peso
+4. Faixa
+5. Voltar
+
+----------------------------------------------------------------------------
+
+----------Categoria Idade----------- (admin)
+1. Adicionar/Modificar
+2. Buscar por ID
+3. Buscar por Nome
+4. Listar todas
+5. Deletar
+6. Voltar
+
+----------Categoria Genero----------- (admin)
+1. Adicionar/Modificar
+2. Buscar por ID
+3. Buscar por Nome
+4. Listar todas
+5. Deletar
+6. Voltar
+
+----------Categoria Peso----------- (admin)
+1. Adicionar/Modificar
+2. Buscar por ID
+3. Buscar por Nome
+4. Listar todas
+5. Deletar
+6. Voltar
+
+----------Categoria Faixa----------- (admin)
+1. Adicionar/Modificar
+2. Buscar por ID
+3. Buscar por Nome
+4. Listar todas
+5. Deletar
+6. Voltar
+
+----------------------------------------------------------------------------
+
+-----------Meus Dados---------- (user)
+
+1. Ver meus dados
+2. Editar meus dados
+3. Voltar
+
+-----------Atletas---------- (admin)
+
+1. Adicionar/Modificar
+2. Buscar por ID
+3. Buscar por Nome
+4 Buscar por CPF
+5. Listar todas
+6. Deletar
+7. Voltar
+
+---------------------------------------------------------------------------
+
+-----------Dojos---------- (admin)
+1. Adicionar/Modificar
+2. Buscar por ID
+3. Buscar por Nome
+4 Buscar por CNPJ
+5. Listar todas
+6. Deletar
+7. Voltar
+
+---------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
